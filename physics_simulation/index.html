@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Проект по физике</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body style="background-color:white;">
+<div class="header_container" >
+<div class="wrapper">
+<img  class = "header_title2" src="images/atom.png" style="width:36px;">&nbsp;&nbsp;
+<span class = "header_title" >Симуляция энергии мяча</span>
+</div>
+</div>
+
+
+<div class="simulation_container" id="whole_body" >
+    <br>
+
+    <div style="margin-left:25%;margin-right:2%;">
+        Масса мяча 1 кг. Сопротивлением воздуха пренебрегаем.</div><br>
+    <div class="row" >
+
+        <div class="7u 12u(mobile)">
+
+            <div style="text-align:left; -webkit-text-size-adjust:100%;">
+                <table align="center" border="0" cellpadding="1" cellspacing="1" style="font-weight: bold;font-size:95%;">
+                    <tr>
+                        <td>Введите высоту h<sub>i</sub> (m): </td>
+                        <td><input type="number" id="ip_initial_h" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Введите начальную скорость u (ms<sup>-1</sup>):</td>
+                        <td><input type="number" id="ip_initial_u" value=""></td>
+                    </tr>
+                </table>
+                <br>
+
+                <center>
+                    <b>Процент потери энергии каждого отскока:<br></b>
+                    <input type="range" id="ip_energy_loss" min="0" max="100" step="1" value="0"
+                           oninput="show_energy_loss();" onchange="show_energy_loss();">&nbsp&nbsp<font id="display_energy_loss">0%</font>
+
+
+                    <br>
+                    <input type="button" value="Start" onclick="calculateAll();">
+                    <input type="button" value="Reset" onclick="resetAll();">
+                </center>
+
+
+            </div>
+
+
+            <br>
+
+            <div align="center" style="margin-left:auto; margin-right:auto; ">
+                <center>
+                    <canvas id="trailCanvas" border="100"  height="120" style="position:absolute;"></canvas>
+                    <canvas id="theCanvas"  height="120" style="position:relative;">
+                        Canvas not supported; please update your browser.
+                    </canvas>
+                    <br>
+                    <br>
+                    <div id="animation_current_status" style="font-size:80%;">
+                        Текущее смещение s: 0m <br>
+                        Текущее время t: 0s <br>
+                    </div>
+                    <br>
+
+                    Скорость анимации:
+                    <input type="range" id="animation_speed" min="10" max="150" step="1" value="90"
+                           oninput="showSpeed();" onchange="showSpeed();">
+                    <input type="button" value="Start Animation" onclick="calculateAll();">
+                    <input type="button" id ="pause_resume_button" value="Pause" onclick="pause_resume_animation();">
+                    <div hidden>
+
+                        <input type="checkbox" id="checkbox_right" style="zoom:1.5;" name="Solution1" onchange="toggleRight();"><font style="color:black">Right</font></input>
+                        <input type="checkbox" id="checkbox_upwards" style="zoom:1.5;" name="Solution2" onchange="toggleUpwards();"><font style="color:black">Upwards</font></input>
+                    </div>
+                </center>
+                <br>
+            </div>
+        </div>
+        <div class="5u 12u(mobile)">
+
+            <canvas id="displacement_graph" height="250" width="300" style="position:absolute;"></canvas>
+            <canvas id="displacement_axis"  height="250" width="300" style="position:relative;"></canvas><br>
+            <canvas id="velocity_graph" height="250" width="300" style="position:absolute;"></canvas>
+            <canvas id="velocity_axis"  height="250" width="300" style="position:relative;"></canvas><br>
+            <canvas id="energy_graph" height="250" width="300" style="position:absolute;"></canvas>
+            <canvas id="energy_axis"  height="250" width="300" style="position:relative;"></canvas>
+            <canvas id="energy_graph_key" height="60" width="300"></canvas>
+
+        </div>
+    </div>
+
+    <div hidden class="simulation_container2"  >
+        <h3 id="solution_header" style="color:blue;font-weight: bold;font-size:120%;">Solution:<br></h3>
+        <div id="display_calculated_values" style="color:blue;font-weight: bold;font-size:120%;">
+            <br>
+        </div>
+        <div id="solution_checkboxes">
+            <br>
+            <input type="checkbox" id="checkbox1" style="zoom:1.5;" name="Solution1" onchange="toggleSolution1();"><font style="color:blue;font-weight: bold;font-size:120%;">Solution 1</font></input>
+            <input type="checkbox" id="checkbox2" style="zoom:1.5;" name="Solution2" onchange="toggleSolution2();"><font style="color:blue;font-weight: bold;font-size:120%;">Solution 2</font></input>
+            <br>
+        </div>
+
+
+    </div>
+</div>
+<br><br>
+<div id="device_size" class="device_size_info" style="font-size:80%;"></div>
+
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="scripts/bouncing_ball.js"></script>
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
